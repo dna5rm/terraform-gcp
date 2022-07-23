@@ -5,7 +5,7 @@
 	VPC configuration
  *****************************************/
 module "vpc" {
-  source                                 = "github.com/terraform-google-modules/terraform-google-network//modules/vpc"
+  source = "github.com/terraform-google-modules/terraform-google-network//modules/vpc"
 
   network_name                           = var.network_name
   auto_create_subnetworks                = var.auto_create_subnetworks
@@ -21,12 +21,12 @@ module "vpc" {
 	Subnet configuration
  *****************************************/
 module "subnets" {
-  source                                  = "github.com/terraform-google-modules/terraform-google-network//modules/subnets"
+  source = "github.com/terraform-google-modules/terraform-google-network//modules/subnets"
 
-  project_id                              = var.project_id
-  network_name                            = module.vpc.network_name
-  subnets                                 = var.subnets
-  secondary_ranges                        = var.secondary_ranges
+  project_id       = var.project_id
+  network_name     = module.vpc.network_name
+  subnets          = var.subnets
+  secondary_ranges = var.secondary_ranges
 }
 
 /******************************************
@@ -49,7 +49,7 @@ module "subnets" {
 	Routes
  *****************************************/
 module "routes" {
-  source            = "github.com/terraform-google-modules/terraform-google-network//modules/routes"
+  source = "github.com/terraform-google-modules/terraform-google-network//modules/routes"
 
   project_id        = var.project_id
   network_name      = module.vpc.network_name
@@ -80,7 +80,7 @@ locals {
 }
 
 module "firewall_rules" {
-  source       = "github.com/terraform-google-modules/terraform-google-network//modules/firewall-rules"
+  source = "github.com/terraform-google-modules/terraform-google-network//modules/firewall-rules"
 
   project_id   = var.project_id
   network_name = module.vpc.network_name
